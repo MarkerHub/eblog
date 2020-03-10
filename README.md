@@ -1,37 +1,112 @@
-# eblog
+#### 项目说明：
 
-#### 介绍
-这是一个从0到1完整搭建博客的项目过程！
+本博客是学习过程中搭建的项目，为了融合更多知识点，让博客看起来更加高大上，使用了多个框架组合，有些也是企业级项目中常用的解决方式。不够说实话，还有挺多内容缺少的，比如xss攻击预防等安全方面的。
 
-#### 软件架构
-软件架构说明
+#### 项目结构：
+```
+eblog
+│
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─com
+│  │  │      └─markerhub
+│  │  │          │  CodeGenerator.java #代码生成
+│  │  │          │
+│  │  │          ├─common
+│  │  │          │  ├─exception #全局异常处理
+│  │  │          │  ├─lang
+│  │  │          │  └─templates #自定义Freemarker标签封装
+│  │  │          │
+│  │  │          ├─config #整合配置
+│  │  │          ├─controller
+│  │  │          ├─entity
+│  │  │          │
+│  │  │          ├─im #即时群聊
+│  │  │          │  ├─handler
+│  │  │          │  ├─message
+│  │  │          │  ├─server
+│  │  │          │  └─vo
+│  │  │          │
+│  │  │          ├─mapper
+│  │  │          ├─schedules #定时任务
+│  │  │          │
+│  │  │          ├─search #内容搜索引擎与同步
+│  │  │          │  ├─model
+│  │  │          │  ├─mq
+│  │  │          │  └─repository
+│  │  │          │
+│  │  │          ├─service
+│  │  │          │  └─impl
+│  │  │          │
+│  │  │          ├─shiro #shiro整合
+│  │  │          ├─template #定义标签
+│  │  │          ├─util
+│  │  │          └─vo
+│  │  │
+│  │  └─resources
+│  │      │  application.yml
+│  │      ├─mapper
+│  │      ├─static
+│  │      │  └─res
+│  │      │
+│  │      └─templates #页面模板
 
+```
 
-#### 安装教程
+#### 技术选型：
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+* 核心框架：Springboot 2.1.2
+* 安全框架：Apache Shiro 1.4
+* 持久层框架：Mybatis + mybatis plus 3.2.0
+* 页面模板：Freemarker
+* 缓存框架：Redis
+* 数据库：mysql
+* 消息队列：RabbitMq
+* 分布式搜索：Elasticsearch 6.4.3
+* 双工通讯协议：websocket
+* 网络通讯框架：t-io 3.2.5
+* 工具集合：hutool 4.1.17
 
-#### 使用说明
+#### 知识要点：
+* 基于mybatis plus快速代码生成
+* 封装与自定义Freemarker标签
+* 使用shiro+redis完成了会话共享
+* redis的zset结构完成本周热议排行榜
+* t-io+websocket完成即时消息通知和群聊
+* 基于rabbitmq+elasticsearch的内容同步与搜索引擎
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 项目部署：
 
-#### 参与贡献
+项目中我们用到了几个中间件，mysql、rabbitmq、elasticsearch。
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+#### 如何交流、反馈？
 
+* 开发文档：[https://www.markerhub.com/eblog](https://www.markerhub.com/eblog)
+* Git仓库：[https://github.com/MarkerHub/eblog](https://github.com/MarkerHub/eblog)
+* 官方微信：**java-mindman3**
+* 技术讨论、问题和建议，请移步到公众号【MarkerHub】菜单栏留言区，我会在第一时间进行解答和回复！
+* 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
+* 官方公众号：**MarkerHub**
 
-#### 码云特技
+![公众号](https://image-1300566513.cos.ap-guangzhou.myqcloud.com/mine/MarkerHub.jpg)
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 项目视频：
+
+#### 项目演示：
+
+演示地址：[https://eblog.markerhub.com](https://eblog.markerhub.com)
+
+账号密码：自行注册~
+
+#### 项目截图：
+
+![注册](https://oscimg.oschina.net/oscnet/up-5c6b2b3f4c7b415cfbafea06b6aaf365ab9.png "注册")
+
+![首页](https://oscimg.oschina.net/oscnet/up-22214fea0fc4bc67d29232d3c8004609e4f.png "首页")
+
+![群聊](https://oscimg.oschina.net/oscnet/up-e1e6084e96a61dc22c95e820fa6e40a7940.png "群聊")
+
+![搜索引擎](https://oscimg.oschina.net/oscnet/up-1b61685d1b4f7f2b62b6d917e57da7828f8.png "搜索引擎")
+
+![设置](https://oscimg.oschina.net/oscnet/up-083ca0a70f566c208ce3a7aae00ab502622.png "设置")
