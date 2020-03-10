@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>聊天记录</title>
+
+<link rel="stylesheet" href="/res/layui/css/layui.css">
+<style>
+body .layim-chat-main{height: auto;}
+</style>
+</head>
+<body>
+
+<div class="layim-chat-main">
+  <ul id="LAY_view"></ul>
+</div>
+
+<div id="LAY_page" style="margin: 0 10px;"></div>
+
+
+<textarea title="消息模版" id="LAY_tpl" style="display:none;">
+{{# layui.each(d.data, function(index, item){
+  if(item.id == parent.layui.layim.cache().mine.id){ }}
+    <li class="layim-chat-mine"><div class="layim-chat-user"><img src="{{ item.avatar }}"><cite><i>{{ layui.data.date(item.timestamp) }}</i>{{ item.username }}</cite></div><div class="layim-chat-text">{{ layui.layim.content(item.content) }}</div></li>
+  {{# } else { }}
+    <li><div class="layim-chat-user"><img src="{{ item.avatar }}"><cite>{{ item.username }}<i>{{ layui.data.date(item.timestamp) }}</i></cite></div><div class="layim-chat-text">{{ layui.layim.content(item.content) }}</div></li>
+  {{# }
+}); }}
+</textarea>
+
+
+<script src="/res/layui/layui.js"></script>
+<script>
+layui.use(['layim', 'laypage'], function(){
+  var layim = layui.layim
+  ,layer = layui.layer
+  ,laytpl = layui.laytpl
+  ,$ = layui.jquery
+  ,laypage = layui.laypage;
+
+  //开始请求聊天记录
+  var param =  location.search; //获得URL参数。该窗口url会携带会话id和type，他们是你请求聊天记录的重要凭据
+
+  var $ = layui.jquery;
+  var res = {};
+  $.ajax({
+      url: '/chat/getGroupHistoryMsg',
+      async: false,
+      success: function (data) {
+          res = data;
+      }
+  });
+
+  var html = laytpl(LAY_tpl.value).render({
+    data: res.data
+  });
+  $('#LAY_view').html(html);
+  
+});
+</script>
+</body>
+</html>

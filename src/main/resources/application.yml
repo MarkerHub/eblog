@@ -1,0 +1,36 @@
+# DataSource Config
+spring:
+  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://localhost:3306/eblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: admin
+  freemarker:
+    settings:
+      classic_compatible: true
+      datetime_format: yyyy-MM-dd HH:mm
+      number_format: 0.##
+  redis:
+    host: 134.175.97.123
+    port: 6379
+    password: redispass9527
+  data:
+    elasticsearch:
+      cluster-name: kobe
+      cluster-nodes: 134.175.97.123:9300
+      repositories:
+        enabled: true
+  rabbitmq:
+    username: root
+    password: BRSAh4oQD@Ij
+    host: 134.175.97.123
+    port: 5672
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+file:
+  upload:
+    dir: ${user.dir}/upload
+im:
+  server:
+    port: 9326
