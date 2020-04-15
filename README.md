@@ -95,7 +95,7 @@ eblog
 
 #### 项目演示：
 
-演示地址：[http://www.markerhub.com:8082/(http://www.markerhub.com:8082/)
+演示地址：[http://www.markerhub.com:8082/](http://www.markerhub.com:8082/)
 
 账号密码：自行注册~
 
