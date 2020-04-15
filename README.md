@@ -80,6 +80,8 @@ eblog
 
 项目中我们用到了几个中间件，mysql、rabbitmq、elasticsearch。
 
+注意的是，即时群聊功能，一定要再`src/main/resources/static/res/js/im.js`中修改成自己服务器的ip地址，才能连上哈！
+
 #### 如何交流、反馈？
 
 * 详细开发文档：
@@ -91,11 +93,9 @@ eblog
 
 ![公众号](https://image-1300566513.cos.ap-guangzhou.myqcloud.com/mine/MarkerHub.jpg)
 
-#### 项目视频：
-
 #### 项目演示：
 
-演示地址：[https://eblog.markerhub.com](https://eblog.markerhub.com)
+演示地址：[http://www.markerhub.com:8082/(http://www.markerhub.com:8082/)
 
 账号密码：自行注册~
 
