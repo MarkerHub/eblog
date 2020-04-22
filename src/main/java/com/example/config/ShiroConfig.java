@@ -5,14 +5,8 @@ import com.example.shiro.AccountRealm;
 import com.example.shiro.AuthFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.crazycake.shiro.RedisCacheManager;
-import org.crazycake.shiro.RedisManager;
-import org.crazycake.shiro.RedisSessionDAO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,23 +17,11 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Value("${spring.redis.host}")
-    private String redisHost;
-
-    @Value("${spring.redis.port}")
-    private String redisPort;
-
-    @Value("${spring.redis.password}")
-    private String redisPassword;
-
     @Bean
-    public SecurityManager securityManager(AccountRealm accountRealm, SessionManager sessionManager, RedisCacheManager cacheManager){
+    public SecurityManager securityManager(AccountRealm accountRealm){
 
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(accountRealm);
-
-        securityManager.setSessionManager(sessionManager);
-        securityManager.setCacheManager(cacheManager);
 
         log.info("------------------>securityManager注入成功");
 
@@ -95,47 +77,4 @@ public class ShiroConfig {
     public AuthFilter authFilter() {
         return new AuthFilter();
     }
-
-
-    //====== session共享 ========
-    /**
-     * 配置shiro redisManager
-     * 使用的是shiro-redis开源插件
-     *
-     * @return
-     */
-    @Bean
-    public RedisManager redisManager() {
-        RedisManager redisManager = new RedisManager();
-        redisManager.setHost(redisHost + ":" + redisPort);
-        redisManager.setDatabase(0);
-        redisManager.setPassword(redisPassword);
-        return redisManager;
-    }
-
-    @Bean
-    RedisSessionDAO redisSessionDAO() {
-        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
-        redisSessionDAO.setRedisManager(redisManager());
-        return redisSessionDAO;
-    }
-
-    @Bean
-    DefaultWebSessionManager sessionManager(RedisSessionDAO redisSessionDAO) {
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        sessionManager.setSessionDAO(redisSessionDAO);
-        return sessionManager;
-    }
-
-    @Bean
-    RedisCacheManager redisCacheManager() {
-        RedisCacheManager redisCacheManager = new RedisCacheManager();
-        redisCacheManager.setRedisManager(redisManager());
-        //redis中针对不同用户缓存(此处的id需要对应user实体中的id字段,用于唯一标识)
-        redisCacheManager.setPrincipalIdFieldName("id");
-        //用户权限信息缓存时间
-        redisCacheManager.setExpire(200000);
-        return redisCacheManager;
-    }
-
 }
