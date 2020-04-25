@@ -82,6 +82,10 @@ eblog
 
 注意的是，即时群聊功能，一定要再`src/main/resources/static/res/js/im.js`中修改成自己服务器的ip地址，才能连上哈！
 
+部署视频教学：
+
+[20分钟学会Docker部署SpringBoot项目(eblog)](https://www.bilibili.com/video/BV1dk4y1r7pi)
+
 #### 如何交流、反馈？
 
 * 详细开发文档：https://www.markerhub.com/project/8
