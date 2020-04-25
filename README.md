@@ -90,7 +90,7 @@ eblog
 * 技术讨论、问题和建议，请移步到公众号【MarkerHub】菜单栏留言区，我会在第一时间进行解答和回复！
 * 如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
 * 官方公众号：**MarkerHub**
-* 更多项目阅读：Github上最值得学习的100个Java开源项目，涵盖各种技术栈！
+* 更多项目阅读：[Github上最值得学习的100个Java开源项目，涵盖各种技术栈！](https://mp.weixin.qq.com/s/YPo4HqU4eidSv7O3TTYNCw)
 
 ![公众号](https://image-1300566513.cos.ap-guangzhou.myqcloud.com/mine/MarkerHub.jpg)
 
