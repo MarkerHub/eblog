@@ -7,7 +7,7 @@ tio.ws = function ($, layim) {
     var self = this;
 
     this.connect = function () {
-        var url = "ws://localhost:9326?userId=" + self.userId;
+        var url = "ws://192.168.1.102:9326?userId=" + self.userId;
         var socket = new WebSocket(url);
 
         self.socket = socket;

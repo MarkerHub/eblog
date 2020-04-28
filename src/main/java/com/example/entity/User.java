@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.entity.BaseEntity;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -22,6 +23,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
+@TableName("m_user")
 public class User extends BaseEntity {
 
     private static final long serialVersionUID = 1L;

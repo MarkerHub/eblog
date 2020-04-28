@@ -9,7 +9,7 @@
                 SELECT
                     username
                 FROM
-                    `user`
+                    `m_user`
                 WHERE
                     id = m.from_user_id
             ) AS fromUserName,
@@ -17,12 +17,12 @@
                 SELECT
                     title
                 FROM
-                    `post`
+                    `m_post`
                 WHERE
                     id = m.post_id
             ) AS postTitle
         FROM
-            `user_message` m
+            `m_user_message` m
 
         ${ew.customSqlSegment}
 

@@ -6,16 +6,16 @@
         SELECT
             p.*,
 
-          u.id AS authorId,
+            u.id AS authorId,
             u.username AS authorName,
             u.avatar AS authorAvatar,
 
             c.id AS categoryId,
             c.name AS categoryName
         FROM
-            post p
-        LEFT JOIN user u ON p.user_id = u.id
-        LEFT JOIN category c ON p.category_id = c.id
+            m_post p
+        LEFT JOIN m_user u ON p.user_id = u.id
+        LEFT JOIN m_category c ON p.category_id = c.id
 
         ${ew.customSqlSegment}
 
@@ -32,9 +32,9 @@
             c.id AS categoryId,
             c.name AS categoryName
         FROM
-            post p
-        LEFT JOIN user u ON p.user_id = u.id
-        LEFT JOIN category c ON p.category_id = c.id
+            m_post p
+        LEFT JOIN m_user u ON p.user_id = u.id
+        LEFT JOIN m_category c ON p.category_id = c.id
 
         ${ew.customSqlSegment}
 

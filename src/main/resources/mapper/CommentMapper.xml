@@ -6,12 +6,12 @@
         SELECT
             c.*,
 
-          u.id AS authorId,
+            u.id AS authorId,
             u.username AS authorName,
             u.avatar AS authorAvatar
         FROM
-            comment c
-        LEFT JOIN user u ON c.user_id = u.id
+            m_comment c
+        LEFT JOIN m_user u ON c.user_id = u.id
 
         ${ew.customSqlSegment}
 
