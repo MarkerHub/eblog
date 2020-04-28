@@ -10,8 +10,8 @@
             u.username AS authorName,
             u.avatar AS authorAvatar
         FROM
-            COMMENT c
-        LEFT JOIN USER u ON c.user_id = u.id
+            comment c
+        LEFT JOIN user u ON c.user_id = u.id
 
         ${ew.customSqlSegment}
 
