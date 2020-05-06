@@ -84,7 +84,7 @@ eblog
 
 #### 视频教学：
 
-[20分钟学会Docker部署SpringBoot项目(eblog)](https://www.bilibili.com/video/BV1dk4y1r7pi
+[20分钟学会Docker部署SpringBoot项目(eblog)](https://www.bilibili.com/video/BV1dk4y1r7pi)
 
 [Java实战项目，使用SpringBoot+Mybatis Plus+shiro+Es+Rabbitmq开发一个博客系统eblog](https://www.bilibili.com/video/BV1ri4y1x71A)
 
