@@ -77,7 +77,9 @@ public class ImWsMsgHandler implements IWsMsgHandler {
     @Override
     public Object onText(WsRequest wsRequest, String text, ChannelContext channelContext) throws Exception {
 
-        log.info("接收到信息——————————————————>{}", text);
+        if(text != null && text.indexOf("ping") < 0) {
+            log.info("接收到信息——————————————————>{}", text);
+        }
 
         Map map = JSONUtil.toBean(text, Map.class);
 

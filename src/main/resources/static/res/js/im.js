@@ -4,20 +4,31 @@ if (typeof (tio) == "undefined") {
 tio.ws = {};
 tio.ws = function ($, layim) {
 
+    this.heartbeatTimeout = 5000; // 心跳超时时间，单位：毫秒
+    this.heartbeatSendInterval = this.heartbeatTimeout / 2;
+
     var self = this;
 
     this.connect = function () {
-        var url = "ws://192.168.1.102:9326?userId=" + self.userId;
+        var url = "ws://129.204.23.53:9326?userId=" + self.userId;
         var socket = new WebSocket(url);
 
         self.socket = socket;
 
         socket.onopen = function () {
             console.log("tio ws 启动~");
+
+            self.lastInteractionTime(new Date().getTime());
+
+            //建立心跳
+            self.ping();
         };
 
         socket.onclose = function () {
             console.log("tio ws 关闭~");
+
+            //尝试重连
+            self.reconn();
         }
         socket.onmessage = function (res) {
             console.log("接收到消息！！")
@@ -27,6 +38,8 @@ tio.ws = function ($, layim) {
             if(msgBody.emit === 'chatMessage'){
                 layim.getMessage(msgBody.data);
             }
+
+            self.lastInteractionTime(new Date().getTime());
         }
 
     };
@@ -77,6 +90,45 @@ tio.ws = function ($, layim) {
             }
         });
     }
+
+
+    //-----------重试机制---------------
+    this.lastInteractionTime = function () {
+        // debugger;
+        if (arguments.length == 1) {
+            this.lastInteractionTimeValue = arguments[0]
+        }
+        return this.lastInteractionTimeValue
+    }
+
+    this.ping = function () {
+        console.log("------------->准备心跳中~");
+
+
+        //建立一个定时器，定时心跳
+        self.pingIntervalId = setInterval(function () {
+            var iv = new Date().getTime() - self.lastInteractionTime(); // 已经多久没发消息了
+
+            // debugger;
+
+            // 单位：秒
+            if ((self.heartbeatSendInterval + iv) >= self.heartbeatTimeout) {
+                self.socket.send(JSON.stringify({
+                    type: 'pingMessage'
+                    ,data: 'ping'
+                }))
+                console.log("------------->心跳中~")
+            }
+        }, self.heartbeatSendInterval)
+    };
+
+    this.reconn = function () {
+        // 先删除心跳定时器
+        clearInterval(self.pingIntervalId);
+
+        // 然后尝试重连
+        self.connect();
+    };
 
 
 };
