@@ -26,6 +26,6 @@ public interface UserMessageMapper extends BaseMapper<UserMessage> {
     IPage<UserMessageVo> selectMessages(Page page, @Param(Constants.WRAPPER) QueryWrapper<UserMessage> wrapper);
 
     @Transactional
-    @Update("update user_message set status = 1 ${ew.customSqlSegment}")
+    @Update("update m_user_message set status = 1 ${ew.customSqlSegment}")
     void updateToReaded(@Param(Constants.WRAPPER)QueryWrapper<UserMessage> wrapper);
 }
