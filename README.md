@@ -91,7 +91,7 @@ eblog
 
 #### 如何交流、反馈？
 
-* 详细开发文档：https://www.markerhub.com/project/8
+* 详细开发文档：https://juejin.im/post/5ee88c58518825434c3db0e5
 * Git仓库：[https://github.com/MarkerHub/eblog](https://github.com/MarkerHub/eblog)
 * 官方微信：**java-mindman3**
 * 技术讨论、问题和建议，请移步到公众号【MarkerHub】菜单栏留言区，我会在第一时间进行解答和回复！
