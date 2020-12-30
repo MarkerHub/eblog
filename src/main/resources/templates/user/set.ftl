@@ -44,8 +44,8 @@
                             </div>
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <input type="radio" name="sex" value="0" <#if user.gender =='0'>checked</#if> title="男">
-                                    <input type="radio" name="sex" value="1" <#if user.gender =='1'>checked</#if> title="女">
+                                    <input type="radio" name="gender" value="0" <#if user.gender =='0'>checked</#if> title="男">
+                                    <input type="radio" name="gender" value="1" <#if user.gender =='1'>checked</#if> title="女">
                                 </div>
                             </div>
                         </div>
